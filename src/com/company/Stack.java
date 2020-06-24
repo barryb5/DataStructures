@@ -5,38 +5,76 @@ import java.util.*;
 
 public class Stack {
     /**
-     * Default Constructor
-     * @param size - size of the stack
+     * initialize the stack, size of stack, and index
      */
-    public Stack(int size)
+    int[] stack;
+    int size;
+    int index;
+    /**
+     * Default Constructor
+     * @param sz - size of the stack
+     */
+    public Stack(int sz)
     {
-        Stack stack = new Stack(size);
+        stack = new int[sz];
+        size = sz;
+        index = 0;
     }
 
     /**
      * Pushes an integer to the stack
      * @param x - item to be pushed into stack
      */
-    public void Push(Stack stack, int x)
+    public boolean Push(int x)
     {
-        stack.push(x);
+        if (index >= size) {
+            return false;
+        }
+        stack[index] = x;
+        ++index;
+        return true;
     }
 
-    public int Pop(Stack stack)
+    public boolean Pop()
     {
-        int popped = stack.pop();
-        return popped;
+        if (index <= 0)
+        {
+            return false;
+        }
+        stack[index - 1] = 0;
+        --index;
+        return true;
     }
 
-    public int Peek(Stack stack)
+    public int Peek()
     {
-        int peeked = stack.peek();
-        return peeked;
+        return stack[index - 1];
     }
 
-    public boolean IsEmpty(Stack stack)
+    public void PrintStack()
     {
-        boolean empty = stack.empty();
-        return empty;
+        for (int i = 0; i < size; ++i)
+        {
+            System.out.printf("%d ", stack[i]);
+        }
+        System.out.printf("\n");
+        for (int i = 0; i < size; ++i)
+        {
+            System.out.printf("--", stack[i]);
+        }
+        System.out.printf("\n");
+        for (int i = 0; i < size; ++i)
+        {
+            System.out.printf("%d ", i);
+        }
+    }
+
+    public boolean IsEmpty()
+    {
+        if (index <=0 )
+        {
+            return true;
+        }
+        return false;
     }
 }
