@@ -1,6 +1,5 @@
 package com.company;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
@@ -10,29 +9,24 @@ public class Main {
 
         Stack stack = new Stack(10);
 
-        while (playing == true)
+        while (playing)
         {
             System.out.println("Do you want to Push, Pop, Peek, Print or Leave?");
             String choice = scanner.nextLine();
-            if (choice == "Push" || choice == "push")
+            if (choice.equals("Push") || choice.equals("push"))
             {
                 System.out.println("What number will you push?");
-                int pushed = scanner.nextInt();
-                stack.Push(pushed);
+                stack.Push(scanner.nextInt());
             }
-            else if (choice == "Pop" || choice == "pop")
+            else if (choice.equals("Pop") || choice.equals("pop"))
             {
                 stack.Pop();
             }
-            else if (choice == "Peek" || choice == "peek")
-            {
-                stack.Peek();
-            }
-            else if (choice == "Print" || choice == "print")
+            else if (choice.equals("Print") || choice.equals("print"))
             {
                 stack.PrintStack();
             }
-            else if (choice == "Leave" || choice == "leave")
+            else if (choice.equals("Leave") || choice.equals("leave"))
             {
                 playing = false;
             }
@@ -40,6 +34,13 @@ public class Main {
             {
                 System.out.println("Please enter a command.");
             }
+        }
+
+        playing = true;
+
+        while (playing)
+        {
+            playing = false;
         }
     }
 

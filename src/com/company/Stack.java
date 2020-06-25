@@ -46,11 +46,6 @@ public class Stack {
         return true;
     }
 
-    public int Peek()
-    {
-        return stack[index - 1];
-    }
-
     public void PrintStack()
     {
         for (int i = 0; i < size; ++i)
@@ -67,6 +62,7 @@ public class Stack {
         {
             System.out.printf("%d ", i);
         }
+        System.out.printf("\n");
     }
 
     public boolean IsEmpty()
