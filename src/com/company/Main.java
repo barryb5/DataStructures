@@ -8,10 +8,11 @@ public class Main {
         boolean playing = true;
 
         Stack stack = new Stack(10);
+        Queue queue = new Queue(10);
 
         while (playing)
         {
-            System.out.println("Do you want to Push, Pop, Peek, Print or Leave?");
+            System.out.println("Do you want to Push, Pop, Print or Leave the Stack?");
             String choice = scanner.nextLine();
             if (choice.equals("Push") || choice.equals("push"))
             {
@@ -40,7 +41,29 @@ public class Main {
 
         while (playing)
         {
-            playing = false;
+            System.out.println("Do you want to Push, Pop, Print or Leave the Queue?");
+            String choice = scanner.nextLine();
+            if (choice.equals("Push") || choice.equals("push"))
+            {
+                System.out.println("What number will you push?");
+                queue.Push(scanner.nextInt());
+            }
+            else if (choice.equals("Pop") || choice.equals("pop"))
+            {
+                queue.Pop();
+            }
+            else if (choice.equals("Print") || choice.equals("print"))
+            {
+                queue.PrintQueue();
+            }
+            else if (choice.equals("Leave") || choice.equals("leave"))
+            {
+                playing = false;
+            }
+            else
+            {
+                System.out.println("Please enter a command.");
+            }
         }
     }
 
