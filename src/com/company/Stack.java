@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.*;
+import java.lang.*;
 
 
 public class Stack {
@@ -25,21 +26,19 @@ public class Stack {
      * Pushes an integer to the stack
      * @param x - item to be pushed into stack
      */
-    public boolean Push(int x)
-    {
+    public boolean Push(int x) throws Exception {
         if (index >= size) {
-            return false;
+            throw new Exception("Stack is full");
         }
         stack[index] = x;
         ++index;
         return true;
     }
 
-    public boolean Pop()
-    {
+    public boolean Pop() throws Exception {
         if (index <= 0)
         {
-            return false;
+            throw new Exception("Cannot pop empty stack");
         }
         stack[index - 1] = 0;
         --index;

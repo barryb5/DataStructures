@@ -3,7 +3,7 @@ package com.company;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         boolean playing = true;
 
@@ -13,21 +13,27 @@ public class Main {
         while (playing)
         {
             System.out.println("Do you want to Push, Pop, Print or Leave the Stack?");
-            String choice = scanner.nextLine();
-            if (choice.equals("Push") || choice.equals("push"))
+            String output = scanner.nextLine();
+            String[] choice = output.split("\\s+");
+            if (choice[0].equals("Push") || choice[0].equals("push"))
             {
-                System.out.println("What number will you push?");
-                stack.Push(scanner.nextInt());
+                try {
+                    Integer.parseInt(choice[1]);
+                } catch (NumberFormatException E) {
+                    System.out.println(E);
+                }
+                int pushed = Integer.parseInt(choice[1]);
+                stack.Push(pushed);
             }
-            else if (choice.equals("Pop") || choice.equals("pop"))
+            else if (choice[0].equals("Pop") || choice[0].equals("pop"))
             {
                 stack.Pop();
             }
-            else if (choice.equals("Print") || choice.equals("print"))
+            else if (choice[0].equals("Print") || choice[0].equals("print"))
             {
                 stack.PrintStack();
             }
-            else if (choice.equals("Leave") || choice.equals("leave"))
+            else if (choice[0].equals("Leave") || choice[0].equals("leave"))
             {
                 playing = false;
             }
@@ -42,21 +48,27 @@ public class Main {
         while (playing)
         {
             System.out.println("Do you want to Push, Pop, Print or Leave the Queue?");
-            String choice = scanner.nextLine();
-            if (choice.equals("Push") || choice.equals("push"))
+            String output = scanner.nextLine();
+            String[] choice = output.split("\\s+");
+            if (choice[0].equals("Push") || choice[0].equals("push"))
             {
-                System.out.println("What number will you push?");
-                queue.Push(scanner.nextInt());
+                try {
+                    Integer.parseInt(choice[1]);
+                } catch (NumberFormatException E) {
+                    System.out.println(E);
+                }
+                int pushed = Integer.parseInt(choice[1]);
+                queue.Push(pushed);
             }
-            else if (choice.equals("Pop") || choice.equals("pop"))
+            else if (choice[0].equals("Pop") || choice[0].equals("pop"))
             {
                 queue.Pop();
             }
-            else if (choice.equals("Print") || choice.equals("print"))
+            else if (choice[0].equals("Print") || choice[0].equals("print"))
             {
                 queue.PrintQueue();
             }
-            else if (choice.equals("Leave") || choice.equals("leave"))
+            else if (choice[0].equals("Leave") || choice[0].equals("leave"))
             {
                 playing = false;
             }

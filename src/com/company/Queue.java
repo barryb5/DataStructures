@@ -19,10 +19,9 @@ public class Queue {
         total = 0;
     }
 
-    public boolean Push(int x)
-    {
+    public boolean Push(int x) throws Exception {
         if (total >= size) {
-            return false;
+            throw new Exception("Queue is full");
         }
         else {
             end = end % size;
@@ -32,10 +31,9 @@ public class Queue {
             return true;
         }
     }
-    public boolean Pop()
-    {
+    public boolean Pop() throws Exception {
         if (total <= 0) {
-            return false;
+            throw new Exception("Cannot pop empty queue");
         }
         else {
             start = start % size;
