@@ -79,10 +79,10 @@ public class Main {
 //        }
 
         LinkedList list = new LinkedList();
-        list.add(5);
-        list.add(6);
-        list.add(7);
-        list.add(8);
-        list.add(9);
+        list.Add(5);
+        list.Add(6);
+        list.Add(7);
+        list.RemoveNode(1);
+        list.Print();
     }
 }

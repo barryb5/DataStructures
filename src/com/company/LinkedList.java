@@ -16,24 +16,57 @@ public class LinkedList {
     };
 
     private Node head;
+    private int numOfNodes = 0;
 
     public LinkedList() {
         this.head = null;
     }
 
-    public void add(int value)
+    public void Add(int value)
     {
         Node n = new Node(value);
 
-        if (this.head == null)
+        if (this.head == null) {
             head = n;
+            numOfNodes = 1;
+        }
         else
         {
             Node ptr = this.head;
             while(ptr.next != null)
                 ptr = ptr.next;
 
-            ptr.next.next = n;
+            ptr.next = n;
+            numOfNodes++;
+        }
+    }
+
+
+    public void RemoveNode(int nodeNum) {
+        if (nodeNum > numOfNodes) {
+            return;
+        }
+
+        Node ptr = this.head;
+
+        if (nodeNum == 1) {
+            
+        }
+        nodeNum--;
+
+        for (int i = 0; i < nodeNum; i++) {
+            if (i == (nodeNum - 1)) {
+                ptr.next = ptr.next.next;
+                numOfNodes--;
+            }
+        }
+    }
+
+    public void Print() {
+        Node n = this.head;
+        for (int i = 0; i < numOfNodes; i++) {
+            System.out.printf("%d", n.value);
+            n = n.next;
         }
     }
 }
