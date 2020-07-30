@@ -41,16 +41,25 @@ public class LinkedList {
         }
     }
 
+    public void NewHead(int value) {
+        Node newHead = new Node(value);
+        newHead.next = head;
+        head = newHead;
+        numOfNodes++;
+    }
 
-    public void RemoveNode(int nodeNum) {
+
+    public void RemoveNode(int nodeNum) throws Exception {
         if (nodeNum > numOfNodes) {
-            return;
+            throw new Exception("Node you're trying to delete doesn't exist");
         }
 
         Node ptr = this.head;
 
         if (nodeNum == 1) {
-            
+            head = head.next;
+            numOfNodes--;
+            return;
         }
         nodeNum--;
 
@@ -65,8 +74,9 @@ public class LinkedList {
     public void Print() {
         Node n = this.head;
         for (int i = 0; i < numOfNodes; i++) {
-            System.out.printf("%d", n.value);
+            System.out.printf("%d ", n.value);
             n = n.next;
         }
+        System.out.printf("\n");
     }
 }
