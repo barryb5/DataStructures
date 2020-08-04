@@ -22,29 +22,33 @@ public class BinaryTree {
     }
 
     BinaryTree() {
-        root = null;
+        root = new Branch(0);
     }
 
-    public void Insert(int value, int[] instructions) {
+    public void Insert(int value) {
 
         Branch b = root;
 
-        if (instructions.length <= 0) {
-            System.out.printf("\nInstructions unclear\n");
-            return;
-        }
-
-        int i = 1;
-
         while (true) {
-            if (instructions[i] == 0) {
+            if (b.value == 0) {
+                b.value = value;
+                return;
+            }
+            else if (value < b.value) {
                 if (b.left == null) {
                     b.left = new Branch(value);
                     return;
                 }
                 b = b.left;
             }
-            else if (instructions[i] == 1) {
+            else if (value > b.value) {
+                if (b.right == null) {
+                    b.right = new Branch(value);
+                    return;
+                }
+                b = b.right;
+            }
+            else if (value == b.value) {
                 if (b.right == null) {
                     b.right = new Branch(value);
                     return;
@@ -52,10 +56,51 @@ public class BinaryTree {
                 b = b.right;
             }
             else {
-                System.out.printf("\nInstructions unclear\n");
+                System.out.printf("\nSomething went wrong I don't know what.\n");
                 return;
             }
         }
+    }
+
+    public void Find(int num) {
+
+        Branch b = root;
+
+        int steps = 0;
+
+        while (true) {
+            if (b.value == 0) {
+                System.out.printf("\nNull\n");
+                return;
+            }
+            else if (num < b.value) {
+                if (num == b.left.value) {
+                    System.out.printf("\n%d, took %d steps\n", num, steps + 1);
+                    return;
+                }
+                b = b.left;
+            }
+            else if (num > b.value) {
+                if (num == b.right.value) {
+                    System.out.printf("\n%d, took %d steps\n", num, steps + 1);
+                    return;
+                }
+                b = b.right;
+            }
+            else if (num == b.value) {
+                if (b.right == null) {
+                    System.out.printf("\n%d, took %d steps\n", num, steps + 1);
+                    return;
+                }
+                b = b.right;
+            }
+            else {
+                System.out.printf("\nSomething went wrong I don't know what.\n");
+                return;
+            }
+            steps++;
+        }
+
     }
 
     public void Print(int space) {
