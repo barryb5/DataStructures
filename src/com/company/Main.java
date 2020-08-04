@@ -129,10 +129,13 @@ public class Main {
 //                System.out.println("Please enter a command.");
 //            }
 //        }
-        BinaryTree tree = new BinaryTree();
-        tree.root = new BinaryTree.Branch(1);
-        tree.root.left = new BinaryTree.Branch(2);
-        tree.root.right = new BinaryTree.Branch(3);
+        BinaryTree tree = new BinaryTree(3);
+        int[] instructions1 = {1, 0};
+        int[] instructions2 = {1, 1};
+        int[] instructions3 = {2, 0, 1};
+        tree.Insert(3, instructions1);
+        tree.Insert(4, instructions2);
+        tree.Insert(5, instructions3);
 
     }
 }
