@@ -22,19 +22,20 @@ public class BinaryTree {
     }
 
     BinaryTree() {
-        root = new Branch(0);
+        root = null;
     }
 
     public void Insert(int value) {
 
         Branch b = root;
 
+        if(root == null) {
+            root = new Branch(value);
+            return;
+        }
+
         while (true) {
-            if (b.value == 0) {
-                b.value = value;
-                return;
-            }
-            else if (value < b.value) {
+            if (value < b.value) {
                 if (b.left == null) {
                     b.left = new Branch(value);
                     return;
@@ -66,17 +67,21 @@ public class BinaryTree {
 
         Branch b = root;
 
+        if (root == null) {
+            System.out.printf("\nNull\n");
+            return;
+        }
+
         int steps = 0;
 
         while (true) {
-            if (b.value == 0) {
-                System.out.printf("\nNull\n");
-                return;
-            }
-            else if (num < b.value) {
+            if (num < b.value) {
                 if (num == b.left.value) {
                     System.out.printf("\n%d, took %d steps\n", num, steps + 1);
                     return;
+                }
+                if (b.left == null) {
+                    System.out.printf("\nNum not found\n");
                 }
                 b = b.left;
             }
@@ -85,14 +90,14 @@ public class BinaryTree {
                     System.out.printf("\n%d, took %d steps\n", num, steps + 1);
                     return;
                 }
+                if (b.right == null) {
+                    System.out.printf("\nNum not found\n");
+                }
                 b = b.right;
             }
             else if (num == b.value) {
-                if (b.right == null) {
-                    System.out.printf("\n%d, took %d steps\n", num, steps + 1);
-                    return;
-                }
-                b = b.right;
+                System.out.printf("\n%d, took %d steps\n", num, steps);
+                return;
             }
             else {
                 System.out.printf("\nSomething went wrong I don't know what.\n");
@@ -103,10 +108,54 @@ public class BinaryTree {
 
     }
 
-    public void Print(int space) {
+    public String TraversePreOrder(Branch root) {
+
+        if (root == null) {
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(root.value);
+
+        String pointerRight = "└──";
+        String pointerLeft = (root.right != null) ? "├──" : "└──";
+
+        TraverseNodes(sb, "", pointerLeft, root.left, root.right != null);
+        TraverseNodes(sb, "", pointerRight, root.right, false);
+
+        return sb.toString();
+    }
+
+    public void TraverseNodes(StringBuilder sb, String padding, String pointer, Branch node,
+                              boolean hasRightSibling) {
+        if (node != null) {
+            sb.append("\n");
+            sb.append(padding);
+            sb.append(pointer);
+            sb.append(node.value);
+
+            StringBuilder paddingBuilder = new StringBuilder(padding);
+            if (hasRightSibling) {
+                paddingBuilder.append("│  ");
+            } else {
+                paddingBuilder.append("   ");
+            }
+
+            String paddingForBoth = paddingBuilder.toString();
+            String pointerRight = "└──";
+            String pointerLeft = (node.right != null) ? "├──" : "└──";
+
+            TraverseNodes(sb, paddingForBoth, pointerLeft, node.left, node.right != null);
+            TraverseNodes(sb, paddingForBoth, pointerRight, node.right, false);
+        }
+    }
+
+    public void Print() {
         if (root == null) {
             System.out.printf("\nNothing to print.\n");
             return;
         }
+        System.out.printf("%s", TraversePreOrder(root));
+        System.out.printf("\n");
     }
 }
