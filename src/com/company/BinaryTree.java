@@ -110,10 +110,6 @@ public class BinaryTree {
 
     public String TraversePreOrder(Branch root) {
 
-        if (root == null) {
-            return "";
-        }
-
         StringBuilder sb = new StringBuilder();
         sb.append(root.value);
 
@@ -126,8 +122,7 @@ public class BinaryTree {
         return sb.toString();
     }
 
-    public void TraverseNodes(StringBuilder sb, String padding, String pointer, Branch node,
-                              boolean hasRightSibling) {
+    public void TraverseNodes(StringBuilder sb, String padding, String pointer, Branch node, boolean hasRightSibling) {
         if (node != null) {
             sb.append("\n");
             sb.append(padding);
